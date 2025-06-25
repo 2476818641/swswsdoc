@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欢迎来到您的专属Docker镜像仓库！</title>
+    <title>欢迎来到 liuasd-dcor.edgeone.app - 您的专属Docker镜像仓库！</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -23,7 +23,7 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 900px; /* 稍微宽一点以容纳代码块 */
+            max-width: 900px;
             width: 100%;
             text-align: center;
         }
@@ -38,7 +38,7 @@
             color: #555;
         }
         .highlight {
-            color: #007bff; /* Bootstrap primary blue */
+            color: #007bff;
             font-weight: bold;
         }
         ul {
@@ -46,7 +46,7 @@
             padding: 0;
             margin-top: 30px;
             text-align: left;
-            display: inline-block; /* 为了让ul居中 */
+            display: inline-block;
         }
         li {
             background-color: #e9f5ff;
@@ -60,31 +60,22 @@
             color: #0056b3;
         }
         .code-block {
-            background-color: #282c34; /* Dark background for code */
-            color: #abb2bf; /* Light text for code */
+            background-color: #282c34;
+            color: #abb2bf;
             padding: 15px;
             border-radius: 5px;
             margin: 20px 0;
             text-align: left;
-            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+            overflow-x: auto;
         }
         .code-block pre {
             margin: 0;
-            white-space: pre-wrap; /* Wrap long lines */
+            white-space: pre-wrap;
             word-wrap: break-word;
         }
         .code-block code {
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
             font-size: 0.95em;
-        }
-        .note {
-            background-color: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 15px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            color: #856404;
-            font-size: 1em;
         }
         .footer {
             margin-top: 40px;
@@ -102,36 +93,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚀 欢迎来到 这里！</h1>
-        <p>这里是您的专属Docker镜像仓库，致力于为您提供<span class="highlight">高效、便捷</span>的镜像服务。</p>
+        <h1>🚀 欢迎来到 我的小项目！</h1>
+        <p>这里是Docker镜像仓库，致力于为您提供<span class="highlight">高效、便捷</span>的镜像服务。</p>
         <p>为了让您能够顺利地拉取和使用本仓库中的镜像，请参考以下操作指南：</p>
 
         <ul>
             <li>
                 <strong>方法一：直接使用 `docker pull` 命令拉取镜像</strong><br>
-                如果您的Docker守护进程配置允许非HTTPS注册表（不推荐用于生产环境），您可以直接使用`docker pull`命令。
+                在某些配置下，您可以直接使用 `docker pull` 命令来拉取镜像。
                 <div class="code-block">
                     <pre><code>docker pull liuasd-dcor.edgeone.app/your-image-name:tag</code></pre>
                 </div>
-                <div class="note">
-                    <p><strong>注意：</strong> 由于 `liuasd-dcor.edgeone.app` 使用的是非标准端口或自签名证书（如果EdgeOne没有提供公共CA信任的证书），Docker客户端默认会拒绝连接。因此，<span class="highlight">强烈建议您使用方法二</span>来配置Docker守护进程。</p>
-                </div>
             </li>
             <li>
-                <strong>方法二：配置Docker守护进程信任此不安全注册表（推荐）</strong><br>
-                为了让Docker守护进程能够从 `liuasd-dcor.edgeone.app` 拉取镜像，您需要将其添加为“不安全注册表”（insecure-registries）。这通常适用于私有或内部网络中的非HTTPS注册表。
-                <p><strong>操作步骤：</strong></p>
+                <strong>方法二：修改Docker配置 </strong><br>
+                <p><strong>操作步骤（仅适用于Linux命令行环境）：</strong></p>
                 <ol>
                     <li>
                         <strong>编辑或创建 `daemon.json` 文件：</strong><br>
-                        在您的Docker主机上，找到或创建Docker守护进程的配置文件 `daemon.json`。<br>
-                        通常位于：
-                        <ul>
-                            <li>Linux: `/etc/docker/daemon.json`</li>
-                            <li>Windows (WSL2/Docker Desktop): 在Docker Desktop设置中配置，或在WSL2环境中找到相应路径。</li>
-                            <li>macOS (Docker Desktop): 在Docker Desktop设置中配置。</li>
-                        </ul>
-                        <p>使用您喜欢的文本编辑器打开此文件，例如：</p>
+                        使用您喜欢的文本编辑器打开或创建Docker守护进程的配置文件 `/etc/docker/daemon.json`。例如：
                         <div class="code-block">
                             <pre><code>sudo vim /etc/docker/daemon.json</code></pre>
                         </div>
@@ -159,17 +139,10 @@
                     <li>
                         <strong>重启Docker守护进程：</strong><br>
                         保存 `daemon.json` 文件后，您需要重启Docker守护进程以使更改生效。
-                        <ul>
-                            <li>Linux (Systemd):
-                                <div class="code-block">
-                                    <pre><code>sudo systemctl daemon-reload
+                        <div class="code-block">
+                            <pre><code>sudo systemctl daemon-reload
 sudo systemctl restart docker</code></pre>
-                                </div>
-                            </li>
-                            <li>Docker Desktop (Windows/macOS):
-                                <p>在Docker Desktop应用中，点击“Restart Docker”或“Apply & Restart”按钮。</p>
-                            </li>
-                        </ul>
+                        </div>
                     </li>
                     <li>
                         <strong>验证配置并拉取镜像：</strong><br>
@@ -181,15 +154,8 @@ sudo systemctl restart docker</code></pre>
                 </ol>
             </li>
             <li>
-                <strong>镜像命名规范：</strong><br>
-                请确保您拉取的镜像名称前缀为 <span class="highlight">`liuasd-dcor.edgeone.app/`</span>。例如，如果您要拉取名为 `my-app` 且标签为 `latest` 的镜像，完整的拉取命令将是：<br>
-                <div class="code-block">
-                    <pre><code>docker pull liuasd-dcor.edgeone.app/my-app:latest</code></pre>
-                </div>
-            </li>
-            <li>
                 <strong>遇到问题？</strong><br>
-                如果在配置或拉取过程中遇到任何问题，请检查您的网络连接、`daemon.json` 文件语法是否正确，并确保Docker守护进程已成功重启。如果问题依然存在，请联系仓库管理员获取支持。
+                如果在配置或拉取过程中遇到任何问题，请检查您的网络连接、`daemon.json` 文件语法是否正确，并确保Docker守护进程已成功重启。。
             </li>
         </ul>
 
